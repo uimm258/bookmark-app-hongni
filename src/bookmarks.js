@@ -22,7 +22,7 @@ function mainPages(){
     </section>`;
 };
 
-// create bookmarks
+//create bookmarks
 function generateAddNewPage(){
     ratingHtmlString = '';
     for(let i = 1; i<= 5; i++){
@@ -75,6 +75,9 @@ function handleNewBookmark(){
         render();
     });
 }
+
+//create a filter and edit the bookmark
+
 
 
 
