@@ -2,7 +2,7 @@ const items = [];
 const error = null;
 const filter = false;
 const adding = false;
-const edit = false;
+const filteredItems = false;
 const filteredBookmarks = [];
 
 function findById(id){
@@ -27,14 +27,21 @@ function findAndUpdate(id, newData){
     Object.assign(currentItem, newData);
 };
 
-export default{
+function setError(error){
+    this.error = error;
+};
+
+
+export default {
     items,
     error,
     filter,
     adding,
+    filteredItems,
     filteredBookmarks,
     findById,
     addItem,
     findAndDelete,
     findAndUpdate,
+    setError,
 }

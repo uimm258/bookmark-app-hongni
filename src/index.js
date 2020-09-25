@@ -1,13 +1,20 @@
 
 import store from './store.js';
 import api from './api.js';
-import bookmarks from './bookmarks.js';
+import bookmark from './bookmark.js';
 
 
 
 
 function main(){
-    bookmarks.bindEventListeners();
+    api.readBookmark()
+        .then((items) => {
+            items.forEach(element => store.adding(element));
+            //bookmark.render();
+        });
+
+    bookmark.bindEventListeners();
+    //bookmark.render();
 };
 
 $(main);

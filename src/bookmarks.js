@@ -8,8 +8,8 @@ function mainPages(){
             <form class="add-new-bookmarks-forms">
                 <button type="submit" id="js-add-new-button">+ New</button>
 
-                <label id="js-ratings">Filter</label>
-                    <select name="ratings" id="rate">
+                <label id="js-filter">Filter</label>
+                    <select name="filter" id="filter-by">
                         <option value="all">All</option>
                         <option value="1">1 star</option>
                         <option value="2">2 stars</option>
@@ -23,7 +23,7 @@ function mainPages(){
 };
 
 //create bookmarks
-function generateAddNewPage(){
+function generateAddNewPage(bookmark){
     ratingHtmlString = '';
     for(let i = 1; i<= 5; i++){
         let checked = '';
@@ -37,7 +37,7 @@ function generateAddNewPage(){
 
     let createStructure = `
     <form class="js-add-new-form">
-        <section class="add-url">
+        <section class="add-url" data-item-id="${bookmark.id}">
             <label for="add-input">Add New Bookmark</label>
             <input type="text" name="url" class="js-add-new-url" placeholder="https://www.example.com" value="${bookmark.url}" required></input>
         </section>
@@ -69,15 +69,39 @@ function render(){
 
 //ckeck if +new works
 function handleNewBookmark(){
-    $('main').on('.click', '.js-add-new-button', event =>{
+    $('.main-page').on('.click', '.js-add-new-button', event =>{
         store.adding = true;
         store.edit = false;
         render();
     });
 }
 
-//create a filter and edit the bookmark
+function displayCurrentResult(){
+    console.log(responseJson);
+    $('#js-add-new-bookmarks').empty;
 
+    let results = '';
+    if(results.expended){
+        responseJson.data.forEach(result => {
+            results += `
+            <li>
+                <h3>$(result.title)</h3`
+        })
+    }
+
+}
+
+//
+function generateFilteredBookmarks(bookmark){
+    let filteredBookmarks = ' ';
+    for(let i = 1; i < 5; i++){
+        if(store.filter !== -1 && bookmark.rarting === store.filter){
+            filteredBookmarks = bookmark.title
+        }
+        return filteredBookmarks;
+    }
+    render();
+}
 
 
 

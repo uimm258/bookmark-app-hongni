@@ -65,7 +65,7 @@ function deleteBookmark(id){
     })
 };
 
-export default{
+export default {
     createBookmark,
     readBookmark,
     updateBookmark,

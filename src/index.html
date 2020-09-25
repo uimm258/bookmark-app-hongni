@@ -9,9 +9,26 @@
 
     <main>
         <h1>My Bookmark Page</h1>
-        <section id="main-page"></section>
 
-        <ul class="js-add-new-bookmarks"></ul>
+        <section id="main-page">
+            <div class="first-page">
+                <form class="add-new-bookmarks-forms">
+                    <button type="submit" id="js-add-new-button">+ New</button>
+    
+                    <label id="js-filter">Filter</label>
+                        <select name="filter" id="filter-by">
+                            <option value="all">All</option>
+                            <option value="1">1 star</option>
+                            <option value="2">2 stars</option>
+                            <option value="3">3 stars</option>
+                            <option value="4">4 stars</option>
+                            <option value="5">5 stars</option>
+                    </select>
+                </form>
+            </div>
+        </section>
+
+        <ul class="js-bookmarks"></ul>
 
 
 
