@@ -27,18 +27,17 @@ function listApiFetch(...args){
 };
 
 //build create
-function createBookmark(title, url, desp, rating){
+function createBookmark(title, url, desc, rating){
     let newBookmark = {
-        'title': title,
-        'url': url,
-        'desp': desp,
-        'rating':rating
-
-    }
+        title: title,
+        url: url,
+        desc: desc,
+        rating: rating
+    };
 
     return listApiFetch(`${baseUrl}`, {
         method: 'POST',
-        header: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newBookmark)
     });
 };
@@ -52,7 +51,7 @@ function readBookmark(){
 function updateBookmark(id, updateData){
     return listApiFetch(`${baseUrl}/${id}`, {
         method: 'PATCH',
-        header: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(updateData)
     });
 };
@@ -61,7 +60,7 @@ function updateBookmark(id, updateData){
 function deleteBookmark(id){
     return listApiFetch(`${baseUrl}/${id}`, {
         method: 'DELETE',
-        header: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
     })
 };
 

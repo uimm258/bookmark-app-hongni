@@ -1,9 +1,8 @@
 const items = [];
 const error = null;
-const filter = false;
+const rating = "All";
 const adding = false;
-const filteredItems = false;
-const filteredBookmarks = [];
+
 
 function findById(id){
     return this.items.find(currentItem => currentItem.id === id);
@@ -35,10 +34,8 @@ function setError(error){
 export default {
     items,
     error,
-    filter,
+    rating,
     adding,
-    filteredItems,
-    filteredBookmarks,
     findById,
     addItem,
     findAndDelete,

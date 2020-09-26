@@ -1,7 +1,7 @@
 
 import store from './store.js';
 import api from './api.js';
-import bookmark from './bookmark.js';
+import bookmarks from './bookmarks.js';
 
 
 
@@ -9,12 +9,11 @@ import bookmark from './bookmark.js';
 function main(){
     api.readBookmark()
         .then((items) => {
-            items.forEach(element => store.adding(element));
-            //bookmark.render();
+            items.forEach(element => store.items.push(element));
         });
 
-    bookmark.bindEventListeners();
-    //bookmark.render();
+    bookmarks.bindEventListeners();
+    bookmarks.render();
 };
 
 $(main);
