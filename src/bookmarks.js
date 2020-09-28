@@ -118,7 +118,6 @@ function generateExpanded(bookmark){
 //expand the bookmark
 function handleExpand(){
     $('.js-bookmarks').on('click', '.expand-button', event => {
-        console.log("check4");
         const id = getBookmarkIdFromElement(event.currentTarget);
         const item = store.findById(id);
         const itemObj = { expanded: !item.expanded };
@@ -129,8 +128,7 @@ function handleExpand(){
 
 //close expanded bookmarks
 function handleClose(){
-    $('.js-bookmarks').on('click', '.expand-button', event => {
-        console.log("check6")
+    $('.js-bookmarks').on('click', '.close-button', event => {
         const id = getBookmarkIdFromElement(event.currentTarget);
         const bookmarkID = store.items.find(item => item.id === id);
         bookmarkID.expanded = false;
@@ -147,6 +145,15 @@ function handleDelete(){
             store.findAndDelete(id);
             render();
         });
+    });
+};
+
+
+function handleFilter(){
+    $('.js-filter-by').on('change', '#js-filter-rating', event => {
+        const displayRating = $(event.currentTarget).val();
+        store.filter = displayRating;
+        render();
     });
 };
 
@@ -167,7 +174,7 @@ function getBookmarkIdFromElement(bookmark){
 //render all
 function render(){
     const items = [...store.items];
-    const bookmarkStrings = generateBookmarkString(items);
+    const bookmarkStrings = generateBookmarkString(store.items);
     $('.js-bookmarks').html(bookmarkStrings);
 
 
@@ -176,32 +183,12 @@ function render(){
     } else {
         $('.js-add-new-bookmark').empty();
     }
-    
 
+    let ratingFilteredBookmarks = items.filter(bookmark => 
+        bookmark.rating >= store.rating);
 
-/*    const itemsBookmarks = items.filter(bookmark => {
-        if(bookmark.rating === items.rating){
-            $('.js-bookmarks').html(itemsBookmarks);
-        } else {
-            $('.js-bookmarks').empty();
-        }                                          
-    })*/
-
-    let ratingFilteredBookmarks = ratingFilteredBookmarks.filter(bookmark => bookmark.rating >= store.rating);
-    
     let htmlString = generateBookmarkString(ratingFilteredBookmarks);
     $('.my-bookmarks').html(htmlString);
-
-
-        /*if(bookmark.rating = "All"){
-            $('.js-bookmarks').html(bookmarkStrings);
-        }else if(bookmark.rating === store.rating){
-            let htmlString = generateBookmarkString(ratingFilteredBookmarks)
-            $('.js-bookmarks').html(htmlString);
-        } else {
-            $('.js-bookmarks').html(bookmarkStrings);
-        }
-    });*/
 
 };
 
@@ -212,6 +199,7 @@ function bindEventListeners(){
     handleExpand();
     handleClose();
     handleDelete();
+    handleFilter();
 };
 
 export default {

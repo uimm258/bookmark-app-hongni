@@ -2,6 +2,7 @@ const items = [];
 const error = null;
 const rating = "All";
 const adding = false;
+const filter = 0;
 
 
 function findById(id){
@@ -36,6 +37,7 @@ export default {
     error,
     rating,
     adding,
+    filter,
     findById,
     addItem,
     findAndDelete,
