@@ -1,6 +1,7 @@
 import api from './api.js';
 import store from './store.js';
 
+
 //create a bookmark form
 function generateAddNew(){
     return `
@@ -34,8 +35,8 @@ function generateAddNew(){
             </section>
     
             <div class="add-new-submit">
-                <button type="submit" name="create-bookmark" class="create-bookmark-button form-button">Create</button>
-                <button type="button" name="cancel-bookmark" class="cancel-bookmark-button form-button">Cancel</button>
+                <button type="submit" name="create-bookmark" class="create-bookmark-button-form-button">Create</button>
+                <button type="button" name="cancel-bookmark" class="cancel-bookmark-button-form-button">Cancel</button>
             </div>
         </form> `;
 };
@@ -91,8 +92,8 @@ function generateExpanded(bookmark){
         <li class="js-item-element" data-item-id="${bookmark.id}">
             <div class="bookmark-expanded">
                 <h2 class="add-title">${bookmark.title}</h2>
-                <p class="add-description">${bookmark.desp}</p>
                 <h3 class="add-rating">Star: ${bookmark.rating}</h3>
+                <p class="add-description">${bookmark.desp}</p>
                 <a href="${bookmark.url}">Visit Site</a>
                 <div class="bookmark-expand">
                     <button class="close-button" type="button">Close</button>
@@ -151,8 +152,8 @@ function handleDelete(){
 
 function handleFilter(){
     $('.js-filter-by').on('change', '#js-filter-rating', event => {
-        const displayRating = $(event.currentTarget).val();
-        store.filter = displayRating;
+        const displayRating = $("#js-filter-rating option:selected").val();
+        store.filter = Number(displayRating);
         render();
     });
 };
@@ -184,10 +185,10 @@ function render(){
         $('.js-add-new-bookmark').empty();
     }
 
-    let ratingFilteredBookmarks = items.filter(bookmark => 
+    const ratingFilteredBookmarks = items.filter(bookmark => 
         bookmark.rating >= store.rating);
 
-    let htmlString = generateBookmarkString(ratingFilteredBookmarks);
+    const htmlString = generateBookmarkString(ratingFilteredBookmarks);
     $('.my-bookmarks').html(htmlString);
 
 };

@@ -1,0 +1,139 @@
+*{
+    box-sizing: border-box;
+}
+
+html {
+    background-image: url('images.jpg');
+    background-repeat: repeat;
+    background-size: 100%;
+}
+
+main {
+    text-align: center;
+}
+
+
+h1 {
+    font-size: 40px;
+}
+
+
+.css-add-new-button{
+	border-radius:18px;
+	cursor:pointer;
+	font-size:15px;
+	font-weight:bold;
+	padding:8px 13px;
+    text-decoration:none;
+}
+
+.css-add-new-button:hover {
+	background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+	background-color:#5cb811;
+}
+.css-add-new-button:active {
+	position:relative;
+	top:1px;
+}
+
+#js-filter {
+    border-radius:8px;
+    font-size:15px;
+    padding:10px 26px;
+    font-weight: bold;
+}
+
+#js-filter-rating {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+  font-size:15px;
+  padding:7px 12px;
+  font-weight: bold;
+}
+
+.js-filter-by, .css-add-new-button {
+    width: 200px;
+    margin: 20px;
+    display: inline-block;
+}
+
+/****************************************/
+
+
+.add-url, .add-title, .add-rating, .add-description{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+} 
+
+.add-new-submit {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor:pointer;
+    border-radius:18px;
+}
+
+
+.create-bookmark-button-form-button:hover {
+    background:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);
+	background-color:#5cb811;
+}
+
+.create-bookmark-button-form-button:active {
+    position:relative;
+	top:1px;
+}
+
+.cancel-bookmark-button-form-button:hover {
+    background:linear-gradient(to bottom, red 5%, red 100%);
+	background-color:red;
+}
+
+.cancel-bookmark-button-form-button:active {
+    position:relative;
+	top:1px;
+}
+
+/****************************************/
+
+.js-item-element {
+    margin-top: 50px;
+}
+
+h2.add-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+h3.add-rating {
+    font-size: 20px;
+}
+
+.bookmark-expand {
+    margin-top: 10px;
+}
+
+.expand-button:hover{
+    background:linear-gradient(to bottom, yellow 5%, yellow 100%);
+	background-color: yellowgreen;
+}
+
+.expand-button:active {
+    position:relative;
+	top:1px;
+}
+
+
+.delete-button:hover {
+    background:linear-gradient(to bottom, red 5%, red 100%);
+	background-color:red;
+}
+
+.delete-button:active {
+    position:relative;
+	top:1px;
+}
