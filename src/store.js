@@ -3,7 +3,7 @@ const error = null;
 const rating = "All";
 const adding = false;
 const filter = 0;
-const filteredItems = [];
+
 
 
 function findById(id){
@@ -32,6 +32,21 @@ function setError(error){
     this.error = error;
 };
 
+const setFiltering = function(param) {
+    this.filter = param;
+}
+
+function filteredItems(filterNumber) {
+    this.filter = filterNumber;
+    this.filteredBookmarks = [];
+    this.items.forEach(bookmark => {
+        if(bookmark.rating >= filterNumber){
+            this.filteredBookmarks.push(bookmark)
+        } 
+    })
+    console.log("check1")
+};
+
 
 export default {
     items,
@@ -39,10 +54,11 @@ export default {
     rating,
     adding,
     filter,
-    filteredItems,
     findById,
     addItem,
     findAndDelete,
     findAndUpdate,
-    setError
+    setError,
+    setFiltering,
+    filteredItems
 }

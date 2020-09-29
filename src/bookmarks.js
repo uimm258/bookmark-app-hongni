@@ -152,8 +152,9 @@ function handleDelete(){
 
 function handleFilter(){
     $('.js-filter-by').on('change', '#js-filter-rating', event => {
-        const displayRating = $("#js-filter-rating option:selected").val();
-        store.filter = Number(displayRating);
+        const displayRating = $('#js-filter-rating').val();
+        console.log(displayRating);
+        store.filteredItems(displayRating);
         render();
     });
 };
@@ -174,10 +175,6 @@ function getBookmarkIdFromElement(bookmark){
 
 //render all
 function render(){
-    const items = [...store.items];
-    const bookmarkStrings = generateBookmarkString(store.items);
-    $('.js-bookmarks').html(bookmarkStrings);
-
 
     if(store.adding){
         $('.js-add-new-bookmark').html(generateAddNew());
@@ -185,11 +182,19 @@ function render(){
         $('.js-add-new-bookmark').empty();
     }
 
-    const ratingFilteredBookmarks = items.filter(bookmark => 
-        bookmark.rating >= store.rating);
 
-    const htmlString = generateBookmarkString(ratingFilteredBookmarks);
-    $('.my-bookmarks').html(htmlString);
+   
+
+    const items = [...store.items];
+    const bookmarkStrings = generateBookmarkString(store.items);
+    $('.js-bookmarks').html(bookmarkStrings);
+
+    //doesn't filter
+    if(store.filter){
+        const itemsArray=[...store.filteredItems];
+        const htmlStrings=generateBookmarkString(store.filteredItems);
+        $('.js-bookmarks').html(htmlStrings);
+    }
 
 };
 
