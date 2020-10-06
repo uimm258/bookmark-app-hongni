@@ -137,3 +137,12 @@ h3.add-rating {
     position:relative;
 	top:1px;
 }
+
+
+@media (min-width: 800px){
+    html {
+        font-size: 10px
+    }
+
+    
+}

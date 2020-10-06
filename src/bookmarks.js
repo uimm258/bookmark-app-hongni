@@ -2,6 +2,30 @@ import api from './api.js';
 import store from './store.js';
 
 
+function generateMainPage(){
+    let mainPage = `
+    <div class="first-page">
+                <form class="add-new-bookmarks-forms" id="js-add-new-form">
+                    <button id="js-add-new-button" class="css-add-new-button">+ New</button>
+
+                    <section class="js-filter-by">
+                        <label id="js-filter">Filter By</label>
+                            <select name="filter" id='js-filter-rating'>
+                                <option value="0">All</option>
+                                <option value="1">1 star</option>
+                                <option value="2">2 stars</option>
+                                <option value="3">3 stars</option>
+                                <option value="4">4 stars</option>
+                                <option value="5">5 stars</option>
+                        </select>
+                    </section>
+
+                <section class="js-add-new-bookmark"></section>
+            </form>
+        </div>`;
+    $('#main-page').html(mainPage);
+}
+
 //create a bookmark form
 function generateAddNew(){
     return `
@@ -42,6 +66,8 @@ function generateAddNew(){
 };
 
 
+
+
 //add new bookmarks to the form
 function handleAddNewForm(){
     $('#js-add-new-button').on('click', event =>{
@@ -50,6 +76,8 @@ function handleAddNewForm(){
         render();
     });
 };
+
+
 
 
 //submit new bookmark
@@ -61,6 +89,7 @@ function handleSubmitBookmarkForm(){
         const url = $('#add-new-url').val();
         const desp = $('#add-new-description').val();
         const rating = $('select#add-new-rating').val();
+
 
         api.createBookmark(title, url, desp, Number(rating))
             .then(newBookmark => {
@@ -76,6 +105,7 @@ function handleSubmitBookmarkForm(){
     });
 }
 
+
 //cancel to add new bookmark to the form
 function handleCancelBookmarkForm(){
     $('#main-page').on('click', '.cancel-bookmark-button', event => {
@@ -84,6 +114,7 @@ function handleCancelBookmarkForm(){
         render();
     })
 }
+
 
 //minimize and expand bookmarks that have been created
 function generateExpanded(bookmark){
@@ -116,6 +147,7 @@ function generateExpanded(bookmark){
     }
 };
 
+
 //expand the bookmark
 function handleExpand(){
     $('.js-bookmarks').on('click', '.expand-button', event => {
@@ -127,6 +159,7 @@ function handleExpand(){
     });
 };
 
+
 //close expanded bookmarks
 function handleClose(){
     $('.js-bookmarks').on('click', '.close-button', event => {
@@ -136,6 +169,7 @@ function handleClose(){
         render();
     });
 };
+
 
 //delete bookmarks
 function handleDelete(){
@@ -150,6 +184,8 @@ function handleDelete(){
 };
 
 
+
+
 function handleFilter(){
     $('.js-filter-by').on('change', '#js-filter-rating', event => {
         const displayRating = $('#js-filter-rating').val();
@@ -159,12 +195,14 @@ function handleFilter(){
     });
 };
 
+
 //store all bookmakes in an array
 function generateBookmarkString(bookmarkList){
     const items = bookmarkList.map(bookmark => generateExpanded(bookmark)
     );
     return items.join(' ');
 };
+
 
 //create id for each bookmarks for filter
 function getBookmarkIdFromElement(bookmark){
@@ -173,8 +211,10 @@ function getBookmarkIdFromElement(bookmark){
         .data('item-id');
 };
 
+
 //render all
 function render(){
+
 
     if(store.adding){
         $('.js-add-new-bookmark').html(generateAddNew());
@@ -183,22 +223,29 @@ function render(){
     }
 
 
+
+
    
+
 
     const items = [...store.items];
     const bookmarkStrings = generateBookmarkString(store.items);
     $('.js-bookmarks').html(bookmarkStrings);
 
+
     //doesn't filter
     if(store.filter){
-        const itemsArray=[...store.filteredItems];
-        const htmlStrings=generateBookmarkString(store.filteredItems);
+        const displayRating = $('#js-filter-rating').val();
+        const htmlStrings=generateBookmarkString(store.filteredItems(displayRating));
         $('.js-bookmarks').html(htmlStrings);
     }
 
+
 };
 
+
 function bindEventListeners(){
+    generateMainPage();
     handleAddNewForm();
     handleSubmitBookmarkForm();
     handleCancelBookmarkForm();
@@ -207,6 +254,7 @@ function bindEventListeners(){
     handleDelete();
     handleFilter();
 };
+
 
 export default {
     bindEventListeners,
